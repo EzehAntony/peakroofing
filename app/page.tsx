@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 
 const NAV_LINKS = ["Services", "Process", "Projects", "About", "Contact"];
 
@@ -96,7 +96,11 @@ export default function PeakRoofing() {
     return () => obs.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleSubmit = (e: FormEvent) => { e.preventDefault(); setSubmitted(true); };
 
   return (
     <div style={{ fontFamily: "'Barlow Condensed', sans-serif", background: "#0A0A0A", color: "#F5F0E8", minHeight: "100vh", overflowX: "hidden", cursor: "none" }}>
@@ -168,7 +172,7 @@ export default function PeakRoofing() {
         <div className="hide-mob" style={{ display: "flex", gap: 40 }}>
           {NAV_LINKS.map(l => <a key={l} href={`#${l.toLowerCase()}`} className={`nav-link${activeSection === l.toLowerCase() ? " active" : ""}`}>{l}</a>)}
         </div>
-        <button className="btn-primary" style={{ padding: "10px 22px", fontSize: 12 }} onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}>
+        <button className="btn-primary" style={{ padding: "10px 22px", fontSize: 12 }} onClick={() => scrollToSection("contact")}>
           Free Quote
         </button>
       </nav>
@@ -195,8 +199,8 @@ export default function PeakRoofing() {
             Ontario's trusted roofing contractor. We replace, repair, and protect roofs built to handle everything Canada throws at them.
           </p>
           <div className="fadein" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button className="btn-primary" onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}>Get a Free Quote →</button>
-            <button className="btn-outline" onClick={() => document.getElementById("services").scrollIntoView({ behavior: "smooth" })}>See Our Work</button>
+            <button className="btn-primary" onClick={() => scrollToSection("contact")}>Get a Free Quote →</button>
+            <button className="btn-outline" onClick={() => scrollToSection("services")}>See Our Work</button>
           </div>
         </div>
         <div style={{ position: "absolute", right: 64, top: "50%", transform: "translateY(-50%)", fontSize: "clamp(110px, 19vw, 250px)", fontWeight: 800, color: "#fff", opacity: 0.022, lineHeight: 1, userSelect: "none", letterSpacing: "-0.04em", pointerEvents: "none" }}>14<br />YRS</div>
@@ -334,7 +338,7 @@ export default function PeakRoofing() {
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 16, color: "#555", lineHeight: 1.88, marginBottom: 44 }}>
               We're fully licensed under the Ontario College of Trades and carry $5M liability insurance on every project.
             </p>
-            <button className="btn-primary" onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}>Work With Us →</button>
+            <button className="btn-primary" onClick={() => scrollToSection("contact")}>Work With Us →</button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "#141414" }}>
             {[["Licensed", "Ontario College of Trades"], ["Insured", "$5M Liability Coverage"], ["Warranty", "10-Year Labour Warranty"], ["Local", "GTA & Surrounding Areas"]].map(([t, d]) => (
