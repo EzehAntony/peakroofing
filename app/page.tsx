@@ -82,7 +82,7 @@ export default function PeakRoofing() {
   }, []);
 
   useEffect(() => {
-    const onMove = (e) => setCursorPos({ x: e.clientX, y: e.clientY });
+    const onMove = (e: MouseEvent) => setCursorPos({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
@@ -96,7 +96,7 @@ export default function PeakRoofing() {
     return () => obs.disconnect();
   }, []);
 
-  const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
 
   return (
     <div style={{ fontFamily: "'Barlow Condensed', sans-serif", background: "#0A0A0A", color: "#F5F0E8", minHeight: "100vh", overflowX: "hidden", cursor: "none" }}>
