@@ -33,12 +33,12 @@ const PROCESS = [
 
 const TICKER_ITEMS = ["Licensed & Insured", "14 Years Experience", "900+ Roofs", "5★ Google Rating", "GTA & Ontario", "No Subcontractors", "10-Year Warranty"];
 
-function useCountUp(target, duration, start) {
+function useCountUp(target: number, duration: number, start: boolean) {
   const [count, setCount] = useState(0);
   useEffect(() => {
     if (!start) return;
-    let startTime = null;
-    const step = (timestamp) => {
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       const ease = 1 - Math.pow(1 - progress, 3);
@@ -50,7 +50,7 @@ function useCountUp(target, duration, start) {
   return count;
 }
 
-function StatCard({ value, suffix, label }) {
+function StatCard({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const count = useCountUp(value, 1600, visible);
